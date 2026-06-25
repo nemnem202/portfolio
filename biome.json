@@ -1,39 +1,16 @@
 {
-  "overrides": [
-    {
-      "includes": [
-        "**/+data.ts",
-        "**/+data.js"
-      ],
-      "linter": {
-        "rules": {
-          "correctness": {
-            "useHookAtTopLevel": "off"
-          }
-        }
-      }
-    },
-    {
-      "includes": [
-        "**/*.css"
-      ],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noUnknownAtRules": "off"
-          }
-        }
-      }
-    }
-  ],
-  "css": {
-    "parser": {
-      "tailwindDirectives": true
-    }
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
   },
   "files": {
+    "ignoreUnknown": true,
     "includes": [
       "**",
+      "!**/conception",
       "!*.cjs",
       "!*.js",
       "!*.mjs",
@@ -41,25 +18,90 @@
       "!**/*.ts.build-*.mjs",
       "!dist/*",
       "!node_modules/*",
-      "!**/.DS_Store"
+      "!**/.DS_Store",
+      "!**/*.css",
+      "!**/*.prisma"
     ]
   },
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "formatter": {
-    "indentStyle": "space"
-  },
-  "linter": {
     "enabled": true,
-    "domains": {
-      "react": "recommended"
-    },
-    "rules": {
-      "preset": "recommended"
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double",
+      "semicolons": "always",
+      "trailingCommas": "es5",
+      "arrowParentheses": "always"
     }
   },
-  "vcs": {
+  "linter": {
+    "includes": ["!**/conception"],
     "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
-  }
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "off",
+        "noUnusedFunctionParameters": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noExplicitAny": "warn"
+      },
+      "style": {
+        "noNonNullAssertion": "warn",
+        "useConst": "error"
+      },
+      "complexity": {
+        "noForEach": "off"
+      }
+    },
+    "domains": {
+      "react": "recommended"
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["**/+data.ts", "**/+data.js"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noAssignInExpressions": "warn"
+          }
+        }
+      } 
+    },
+    {
+      "includes": ["*.config.{js,ts,mjs}", "vite.config.*"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        } 
+      }
+    },
+    {
+      "includes": ["*.test.ts", "*.spec.ts", "**/__tests__/**"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    }
+  ]
 }
