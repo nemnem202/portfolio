@@ -34,6 +34,7 @@ export default function Navbar() {
         setCurrentTab(id);
         setDisplayedTab(id);
       }}
+      onComplete={() => setCurrentTab(displayedTab)}
     />
   );
 }

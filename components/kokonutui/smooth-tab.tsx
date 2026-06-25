@@ -101,6 +101,7 @@ interface SmoothTabProps {
   className?: string;
   activeColor?: string;
   onChange?: (tabId: Section) => void;
+  onComplete?: () => void;
 }
 
 export default function SmoothTab({
@@ -109,6 +110,7 @@ export default function SmoothTab({
   className,
   activeColor = "bg-[#1F9CFE]",
   onChange,
+  onComplete,
 }: SmoothTabProps) {
   const [selected, setSelected] = React.useState<string>(displayedTab);
   const [direction, setDirection] = React.useState(0);
@@ -196,6 +198,7 @@ export default function SmoothTab({
           type: "spring",
           stiffness: 400,
           damping: 32,
+          onComplete: onComplete,
         }}
       />
 
