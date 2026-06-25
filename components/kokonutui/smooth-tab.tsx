@@ -97,8 +97,7 @@ const DEFAULT_TABS: TabItem[] = [];
 
 interface SmoothTabProps {
   items?: TabItem[];
-  currentTab: Section;
-  setCurrentTab: React.Dispatch<React.SetStateAction<Section>>;
+  displayedTab: Section;
   className?: string;
   activeColor?: string;
   onChange?: (tabId: Section) => void;
@@ -106,14 +105,12 @@ interface SmoothTabProps {
 
 export default function SmoothTab({
   items = DEFAULT_TABS,
-  // defaultTabId = DEFAULT_TABS[0].id,
-  currentTab,
-  setCurrentTab,
+  displayedTab,
   className,
   activeColor = "bg-[#1F9CFE]",
   onChange,
 }: SmoothTabProps) {
-  // const [selected, setSelected] = React.useState<string>(defaultTabId);
+  const [selected, setSelected] = React.useState<string>(displayedTab);
   const [direction, setDirection] = React.useState(0);
   const [dimensions, setDimensions] = React.useState({ width: 0, left: 0 });
 
@@ -121,10 +118,14 @@ export default function SmoothTab({
   const buttonRefs = React.useRef<Map<string, HTMLButtonElement>>(new Map());
   const containerRef = React.useRef<HTMLDivElement>(null);
 
+  React.useEffect(() => {
+    setSelected(displayedTab);
+  }, [displayedTab]);
+
   // Update dimensions whenever selected tab changes or on mount
   React.useLayoutEffect(() => {
     const updateDimensions = () => {
-      const selectedButton = buttonRefs.current.get(currentTab);
+      const selectedButton = buttonRefs.current.get(selected);
       const container = containerRef.current;
 
       if (selectedButton && container) {
@@ -146,13 +147,13 @@ export default function SmoothTab({
     // Update on resize
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-  }, [currentTab]);
+  }, [selected]);
 
   const handleTabClick = (tabId: Section) => {
-    const currentIndex = items.findIndex((item) => item.id === currentTab);
+    const currentIndex = items.findIndex((item) => item.id === selected);
     const newIndex = items.findIndex((item) => item.id === tabId);
     setDirection(newIndex > currentIndex ? 1 : -1);
-    setCurrentTab(tabId);
+    setSelected(tabId);
     onChange?.(tabId);
   };
 
@@ -163,7 +164,7 @@ export default function SmoothTab({
     }
   };
 
-  const selectedItem = items.find((item) => item.id === currentTab);
+  const selectedItem = items.find((item) => item.id === selected);
 
   return (
     <div
@@ -200,7 +201,7 @@ export default function SmoothTab({
 
       <div className="relative z-[2] grid w-full grid-cols-4 gap-1">
         {items.map((item) => {
-          const isSelected = currentTab === item.id;
+          const isSelected = selected === item.id;
           return (
             <motion.button
               aria-controls={`panel-${item.id}`}

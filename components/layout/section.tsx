@@ -3,7 +3,7 @@ import { Section } from "@/config/sections";
 import { useTabs } from "@/providers/TabsProvider";
 
 export default function Section({ children, id }: { children: ReactNode; id: Section }) {
-  const { setCurrentTab } = useTabs();
+  const { setDisplayedTab } = useTabs();
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function Section({ children, id }: { children: ReactNode; id: Sec
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setCurrentTab(id);
+          setDisplayedTab(id);
         }
       },
       { threshold: 0.5 }
@@ -21,7 +21,7 @@ export default function Section({ children, id }: { children: ReactNode; id: Sec
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [id, setCurrentTab]);
+  }, [id, setDisplayedTab]);
 
   return (
     <section ref={ref} className="w-full h-screen shrink-0 flex items-end p-4" id={id}>

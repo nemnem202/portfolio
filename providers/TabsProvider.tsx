@@ -1,9 +1,19 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 import { Section } from "@/config/sections";
 
 export type TabsContextContent = {
   currentTab: Section;
   setCurrentTab: Dispatch<SetStateAction<Section>>;
+  displayedTab: Section;
+  setDisplayedTab: Dispatch<SetStateAction<Section>>;
 };
 
 export const TabsContext = createContext<TabsContextContent | null>(null);
@@ -16,8 +26,12 @@ export default function TabsProvider({
   children: ReactNode;
 }) {
   const [currentTab, setCurrentTab] = useState<Section>(defaultTab);
+  const [displayedTab, setDisplayedTab] = useState<Section>(defaultTab);
+
   return (
-    <TabsContext.Provider value={{ currentTab, setCurrentTab }}>{children}</TabsContext.Provider>
+    <TabsContext.Provider value={{ currentTab, setCurrentTab, displayedTab, setDisplayedTab }}>
+      {children}
+    </TabsContext.Provider>
   );
 }
 

@@ -9,24 +9,20 @@ function SnapSetup() {
 
   useEffect(() => {
     if (!lenis) return;
-
     const snap = new Snap(lenis, {
       type: "mandatory",
       duration: 1.0,
       easing: (t) => 1 - Math.pow(1 - t, 3),
       debounce: 0,
     });
-
-    snap.addElements(document.querySelectorAll("section") as any, {
-      align: ["start"],
-    });
-
+    snap.addElements(document.querySelectorAll("section") as any, { align: ["start"] });
     return () => snap.destroy();
   }, [lenis]);
 
   useEffect(() => {
     const element = document.getElementById(currentTab);
     if (!element) return;
+
     lenis?.scrollTo(element);
   }, [currentTab]);
 

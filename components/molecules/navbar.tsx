@@ -2,7 +2,7 @@ import { useTabs } from "@/providers/TabsProvider";
 import SmoothTab from "../kokonutui/smooth-tab";
 
 export default function Navbar() {
-  const { currentTab, setCurrentTab } = useTabs();
+  const { displayedTab, setCurrentTab, setDisplayedTab } = useTabs();
   return (
     <SmoothTab
       items={[
@@ -29,8 +29,11 @@ export default function Navbar() {
       ]}
       className="bg-transparent"
       activeColor="bg-primary"
-      currentTab={currentTab}
-      setCurrentTab={setCurrentTab}
+      displayedTab={displayedTab}
+      onChange={(id) => {
+        setCurrentTab(id);
+        setDisplayedTab(id);
+      }}
     />
   );
 }
