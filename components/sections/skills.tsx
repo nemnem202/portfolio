@@ -3,8 +3,8 @@ import Section from "../layout/section";
 
 export default function SkillSection() {
   return (
-    <Section>
-      <Title>SkillSection</Title>
+    <Section id="skills">
+      <Title>Skills</Title>
     </Section>
   );
 }

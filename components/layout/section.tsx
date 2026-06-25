@@ -1,5 +1,31 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
+import { Section } from "@/config/sections";
+import { useTabs } from "@/providers/TabsProvider";
 
-export default function Section({ children }: { children: ReactNode }) {
-  return <section className="w-full h-screen pt-15 shrink-0">{children}</section>;
+export default function Section({ children, id }: { children: ReactNode; id: Section }) {
+  const { setCurrentTab } = useTabs();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCurrentTab(id);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [id, setCurrentTab]);
+
+  return (
+    <section ref={ref} className="w-full h-screen shrink-0 flex items-end p-4" id={id}>
+      {children}
+    </section>
+  );
 }

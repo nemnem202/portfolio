@@ -3,8 +3,8 @@ import Section from "../layout/section";
 
 export default function PresentationSection() {
   return (
-    <Section>
-      <Title>Presentation</Title>
+    <Section id="presentation">
+      <Title>Me</Title>
     </Section>
   );
 }
