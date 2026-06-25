@@ -22,7 +22,6 @@ export default function Page() {
             <Background />
           </SmoothScrollProvider>
         </main>
-        {/* <Footer /> */}
       </TabsProvider>
     </>
   );
