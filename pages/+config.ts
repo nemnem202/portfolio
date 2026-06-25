@@ -6,8 +6,8 @@ import vikeReact from "vike-react/config";
 
 const config: Config = {
   // https://vike.dev/head-tags
-  title: "My Vike App",
-  description: "Demo showcasing Vike",
+  title: "Portfolio",
+  description: "The portfolio of the fullstack dev: Naïm El Habbas",
 
   extends: [vikeReact],
 };
