@@ -32,7 +32,7 @@ const activities: ActivityData[] = [
   {
     label: "MOVE",
     value: 85,
-    color: "#FF2D55",
+    color: "#f54900;",
     size: 200,
     current: 479,
     target: 800,
@@ -41,7 +41,7 @@ const activities: ActivityData[] = [
   {
     label: "EXERCISE",
     value: 60,
-    color: "#A3F900",
+    color: "#009689",
     size: 160,
     current: 24,
     target: 30,
@@ -50,7 +50,7 @@ const activities: ActivityData[] = [
   {
     label: "STAND",
     value: 30,
-    color: "#04C7DD",
+    color: "#ffb900",
     size: 120,
     current: 6,
     target: 12,
@@ -178,14 +178,14 @@ export default function AppleActivityCard({
     <div
       className={cn(
         "relative mx-auto w-full max-w-3xl rounded-3xl p-8",
-        "text-zinc-900 dark:text-white",
+        "text-foreground",
         className
       )}
     >
       <div className="flex flex-col items-center gap-8">
         <motion.h2
           animate={{ opacity: 1, y: 0 }}
-          className="font-medium text-2xl text-zinc-900 dark:text-white"
+          className="font-medium text-2xl "
           initial={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
         >

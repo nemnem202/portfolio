@@ -59,7 +59,7 @@ export function SectionContent({
 }) {
   return (
     <div
-      className={`h-full w-full p-15 ${className}`}
+      className={`h-full w-full p-15 lg:pl-25 ${className}`}
       style={{
         transform: "translateY(calc((var(--scroll-progress, 0.5) - 0.5) * -500px))",
         willChange: "transform",
