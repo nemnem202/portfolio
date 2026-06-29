@@ -259,6 +259,7 @@ export default function Carousel({
           disabled={position <= 0}
           className="rounded-full hover:bg-primary/50 border-none"
           onClick={() => setPosition((prev) => prev - 1)}
+          aria-label="carousel-arrow left"
         >
           <ArrowLeft />
         </Button>
@@ -292,6 +293,7 @@ export default function Carousel({
           className="rounded-full hover:bg-primary/50 border-none"
           disabled={position >= itemsForRender.length - 1}
           onClick={() => setPosition((prev) => prev + 1)}
+          aria-label="carousel-arrow right"
         >
           <ArrowRight />
         </Button>

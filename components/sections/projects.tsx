@@ -3,6 +3,7 @@ import ParallaxBox from "../layout/parallaxBox";
 import Section, { SectionContent } from "../layout/section";
 import { SequenceItem } from "../layout/sequenceItem";
 import Carousel from "../ui/Carousel";
+import SpotlightCard from "../ui/SpotlightCard";
 
 export default function ProjectsSection() {
   return (
@@ -41,27 +42,9 @@ export default function ProjectsSection() {
 
 export function ProfileCard() {
   return (
-    <div className="mx-auto transition-all duration-300 hover:shadow-2xl">
-      <div className="h-60 bg-gradient-to-r from-indigo-500 to-purple-600" />
-      <div className="px-6 pb-6 text-center">
-        <div className="relative -mt-16 mb-4 inline-block">
-          <img
-            className="w-28 h-28 rounded-full mx-auto object-cover border-4 border-white shadow-md"
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=256&auto=format&fit=crop"
-            alt="Avatar"
-          />
-          <span className="absolute bottom-2 right-2 block h-4 w-4 rounded-full bg-emerald-400 ring-2 ring-white animate-pulse" />
-        </div>
-        <h3 className="text-xl font-bold text-slate-800 tracking-tight">Alex Morgan</h3>
-        <p className="text-sm font-medium text-indigo-600 mb-3">Développeur Full-Stack</p>
-        <p className="text-slate-500 text-sm leading-relaxed mb-6">
-          Passionné par la création d'interfaces fluides, le code propre et les architectures
-          modernes.
-        </p>
-        <button className="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm rounded-xl transition-colors duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2">
-          Voir le profil
-        </button>
-      </div>
-    </div>
+    <SpotlightCard
+      className="h-120 aspect-video custom-spotlight-card"
+      spotlightColor="rgba(123, 36, 241, 0.3)"
+    ></SpotlightCard>
   );
 }

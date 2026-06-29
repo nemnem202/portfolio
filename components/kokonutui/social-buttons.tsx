@@ -79,6 +79,7 @@ export default function SocialButton({
             className
           )}
           {...props}
+          name={label}
         >
           <span className="flex items-center gap-2">
             <Link className="h-4 w-4" />

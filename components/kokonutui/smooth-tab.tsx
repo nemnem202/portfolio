@@ -170,7 +170,7 @@ export default function SmoothTab({
 
   return (
     <div
-      aria-label="Smooth tabs"
+      aria-label="Navigation des sections"
       className={cn(
         "relative mt-auto flex items-center justify-between gap-1 py-1",
         "w-[400px]",
@@ -179,7 +179,6 @@ export default function SmoothTab({
         className
       )}
       ref={containerRef}
-      role="tablist"
     >
       <RotatingBorder />
       <motion.div
@@ -207,8 +206,8 @@ export default function SmoothTab({
           const isSelected = selected === item.id;
           return (
             <motion.button
-              aria-controls={`panel-${item.id}`}
-              aria-selected={isSelected}
+              aria-label={item.title}
+              name={`tab-${item.title}`}
               className={cn(
                 "relative flex items-center justify-center gap-0.5 rounded-lg px-2 py-1.5",
                 "font-medium text-sm transition-all duration-300 cursor-pointer",
@@ -216,7 +215,7 @@ export default function SmoothTab({
                 "truncate ",
                 isSelected ? "text-white" : "text-muted-foreground hover:text-foreground"
               )}
-              id={`tab-${item.id}`}
+              id={`nav-${item.id}`}
               key={item.id}
               onClick={() => handleTabClick(item.id)}
               onKeyDown={(e) => handleKeyDown(e, item.id)}
@@ -224,7 +223,6 @@ export default function SmoothTab({
                 if (el) buttonRefs.current.set(item.id, el);
                 else buttonRefs.current.delete(item.id);
               }}
-              role="tab"
               tabIndex={isSelected ? 0 : -1}
               type="button"
             >
