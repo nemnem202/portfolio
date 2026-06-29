@@ -55,13 +55,21 @@ export default function Section({ children, id }: { children: ReactNode; id: Sec
 export function SectionContent({
   children,
   className,
+  animateOnScroll = true,
 }: {
   children: ReactNode;
   className?: string;
+  animateOnScroll?: boolean;
 }) {
   return (
-    <ParallaxBox className={`h-full w-full p-15 lg:pl-25 min-h-0 ${className}`}>
-      <SequenceProvider>{children}</SequenceProvider>
+    <ParallaxBox className="h-full w-full p-15 lg:pl-25 min-h-0">
+      <SequenceProvider
+        triggerOnVisibility={animateOnScroll}
+        className={`h-full w-full p-15 lg:pl-25 min-h-0 ${className}`}
+        animationDuration={1000}
+      >
+        {children}
+      </SequenceProvider>
     </ParallaxBox>
   );
 }

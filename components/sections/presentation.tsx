@@ -6,7 +6,7 @@ import { SequenceItem } from "../layout/sequenceItem";
 export default function PresentationSection() {
   return (
     <Section id="presentation">
-      <SectionContent className="flex gap-12">
+      <SectionContent className="flex gap-12" animateOnScroll={false}>
         <div className="grid grid-cols-15 grid-rows-10 size-full">
           <SequenceItem
             index={0}

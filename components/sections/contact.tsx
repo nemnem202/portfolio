@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatedSpan, Terminal, TypingAnimation } from "@/components/ui/terminal";
+import { useTabs } from "@/providers/TabsProvider";
 import Title from "../atoms/title";
 import SocialButton from "../kokonutui/social-buttons";
 import ParallaxBox from "../layout/parallaxBox";
 import Section, { SectionContent } from "../layout/section";
+import { SequenceItem } from "../layout/sequenceItem";
 export default function ContacSection() {
   return (
     <Section id="contacts">
       <SectionContent className="flex gap-12">
-        <div className="flex-1 flex items-center justify-center">
+        <SequenceItem className="flex-1 flex items-center justify-center" index={0}>
           <div className="flex flex-col items-end">
             <p className="max-w-2xl">
               Velit cupidatat commodo adipisicing est consequat mollit veniam mollit deserunt ad
@@ -19,10 +21,12 @@ export default function ContacSection() {
               <SocialButton />
             </div>
           </div>
-        </div>
-        <ParallaxBox className="w-full max-w-2xl">
-          <Form />
-        </ParallaxBox>
+        </SequenceItem>
+        <SequenceItem className="size-full max-w-2xl" index={1}>
+          <ParallaxBox className="size-full max-w-2xl">
+            <Form />
+          </ParallaxBox>
+        </SequenceItem>
       </SectionContent>
       <Title>Contact</Title>
     </Section>
@@ -41,6 +45,7 @@ type FormData = {
 type Step = "firstname" | "email" | "subject" | "message" | "confirm" | "submitted";
 
 export function Form() {
+  const { displayedTab } = useTabs();
   const [step, setStep] = useState<Step>("firstname");
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
@@ -52,10 +57,12 @@ export function Form() {
   const [currentValue, setCurrentValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Garde le focus sur l'input du terminal
   useEffect(() => {
-    inputRef.current?.focus();
-  }, [step]);
+    // On ne donne le focus QUE si la section active est "contacts"
+    if (displayedTab === "contacts") {
+      inputRef.current?.focus();
+    }
+  }, [step, displayedTab]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -116,7 +123,6 @@ export function Form() {
             onChange={(e) => setCurrentValue(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Votre prénom..."
-            autoFocus
           />
         </div>
       )}

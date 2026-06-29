@@ -1,26 +1,40 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useSequence } from "@/providers/StaggerProvider";
 
-interface Props {
+export const SequenceItem: React.FC<{
   index: number;
   children: React.ReactNode;
   className?: string;
-}
+}> = ({ index, children, className = "" }) => {
+  const { animationDuration, staggerPercentage, isVisible: providerVisible } = useSequence();
+  const [isMounted, setIsMounted] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-export const SequenceItem: React.FC<Props> = ({ index, children, className = "" }) => {
-  const { animationDuration, staggerPercentage } = useSequence();
+  useEffect(() => {
+    // Si le provider dit que la section est visible
+    if (providerVisible) {
+      // 1. On monte le composant immédiatement
+      setIsMounted(true);
 
-  // Calcul du délai : peut être négatif si staggerPercentage est négatif
+      // 2. On attend un cycle de rendu (10ms) pour que React injecte le DOM
+      // puis on lance l'animation
+      const timer = setTimeout(() => {
+        setIsAnimating(true);
+      }, 10);
+      return () => clearTimeout(timer);
+    }
+  }, [providerVisible]);
+
+  if (!isMounted) return null;
+
   const delay = index * (animationDuration * staggerPercentage);
 
   return (
     <div
-      className={`opacity-0 transition-opacity ease-in-out ${className}`}
+      className={`${className} transition-opacity duration-300 ${isAnimating ? "opacity-100" : "opacity-0"}`}
       style={{
         transitionDuration: `${animationDuration}ms`,
-        transitionDelay: `${delay}ms`,
-        animationFillMode: "forwards",
-        animation: `fadeIn ${animationDuration}ms ease-in-out ${delay}ms forwards`,
+        transitionDelay: `${isAnimating ? delay : 0}ms`,
       }}
     >
       {children}

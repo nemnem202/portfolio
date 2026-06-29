@@ -1,6 +1,7 @@
 import Title from "../atoms/title";
 import ParallaxBox from "../layout/parallaxBox";
 import Section, { SectionContent } from "../layout/section";
+import { SequenceItem } from "../layout/sequenceItem";
 import Carousel from "../ui/Carousel";
 
 export default function ProjectsSection() {
@@ -8,20 +9,22 @@ export default function ProjectsSection() {
     <Section id="projects">
       <SectionContent className="flex gap-12">
         <ParallaxBox className="flex-1 ">
-          <Carousel
-            baseWidth={700}
-            autoplay={false}
-            autoplayDelay={3000}
-            pauseOnHover={false}
-            loop={false}
-            round={false}
-            items={Array.from({ length: 4 }).map((_, index) => ({
-              id: index,
-              content: <ProfileCard />,
-            }))}
-          />
+          <SequenceItem index={0}>
+            <Carousel
+              baseWidth={700}
+              autoplay={false}
+              autoplayDelay={3000}
+              pauseOnHover={false}
+              loop={false}
+              round={false}
+              items={Array.from({ length: 4 }).map((_, index) => ({
+                id: index,
+                content: <ProfileCard />,
+              }))}
+            />
+          </SequenceItem>
         </ParallaxBox>
-        <div className="size-full flex items-center justify-center">
+        <SequenceItem className="size-full flex items-center justify-center" index={1}>
           <p className="max-w-2xl">
             Reprehenderit labore exercitation sint ex labore ut eiusmod eu esse. Anim duis
             consectetur culpa in cupidatat cillum. Ut qui culpa dolor velit pariatur Lorem duis amet
@@ -29,7 +32,7 @@ export default function ProjectsSection() {
             cupidatat magna tempor duis mollit. Fugiat proident mollit esse ut consequat aute
             excepteur tempor duis dolor culpa quis magna ex.
           </p>
-        </div>
+        </SequenceItem>
       </SectionContent>
       <Title>Projects</Title>
     </Section>
