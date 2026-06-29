@@ -1,5 +1,6 @@
 import { ReactNode, useEffect, useRef } from "react";
 import { Section } from "@/config/sections";
+import { SequenceProvider } from "@/providers/StaggerProvider";
 import { useTabs } from "@/providers/TabsProvider";
 import ParallaxBox from "./parallaxBox";
 
@@ -60,7 +61,7 @@ export function SectionContent({
 }) {
   return (
     <ParallaxBox className={`h-full w-full p-15 lg:pl-25 min-h-0 ${className}`}>
-      {children}
+      <SequenceProvider>{children}</SequenceProvider>
     </ParallaxBox>
   );
 }

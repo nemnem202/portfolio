@@ -1,13 +1,17 @@
 import Title from "../atoms/title";
 import ParallaxBox from "../layout/parallaxBox";
 import Section, { SectionContent } from "../layout/section";
+import { SequenceItem } from "../layout/sequenceItem";
 
 export default function PresentationSection() {
   return (
     <Section id="presentation">
       <SectionContent className="flex gap-12">
         <div className="grid grid-cols-15 grid-rows-10 size-full">
-          <div className="col-start-6 col-end-9 row-start-4 row-end-8 size-full flex items-center justify-center">
+          <SequenceItem
+            index={0}
+            className="col-start-6 col-end-9 row-start-4 row-end-8 size-full flex items-center justify-center"
+          >
             <ParallaxBox className=" rounded-full w-full aspect-square shadow-2xl shadow-primary/40">
               <img
                 className="size-full rounded-full mx-auto object-cover"
@@ -15,8 +19,11 @@ export default function PresentationSection() {
                 alt="Avatar"
               />
             </ParallaxBox>
-          </div>
-          <div className="col-start-1 col-end-6 row-start-1 row-end-4 size-full flex items-center justify-center">
+          </SequenceItem>
+          <SequenceItem
+            index={1}
+            className="col-start-1 col-end-6 row-start-1 row-end-4 size-full flex items-center justify-center"
+          >
             <div className=" size-full rounded-lg">
               <p>
                 Ad aute do sint in mollit pariatur exercitation qui ex laborum. Cupidatat Lorem
@@ -27,15 +34,22 @@ export default function PresentationSection() {
                 occaecat qui velit consectetur magna.
               </p>
             </div>
-          </div>
-          <div className="col-start-2 col-end-5 row-start-7 row-end-10 size-full flex items-center justify-center">
+          </SequenceItem>
+          <SequenceItem
+            index={2}
+            className="col-start-2 col-end-5 row-start-7 row-end-10 size-full flex items-center justify-center"
+          >
             <div className=" size-full rounded-lg">
               Officia dolor sint aliqua nulla ex nisi cupidatat anim sit voluptate ullamco
               incididunt elit id. Eiusmod ipsum ut culpa deserunt aliquip laboris in ex velit est.
               In amet mollit laboris commodo cillum ea. In amet mollit laboris commodo cillum ea.
             </div>
-          </div>
-          <div className="col-start-10 col-end-16 row-start-2 row-end-5 size-full flex items-center justify-center">
+          </SequenceItem>
+
+          <SequenceItem
+            index={3}
+            className="col-start-10 col-end-16 row-start-2 row-end-5 size-full flex items-center justify-center"
+          >
             <div className=" size-full rounded-lg">
               Sint ea nostrud tempor deserunt et esse do anim laboris eiusmod. Quis magna esse
               reprehenderit labore ipsum. Qui quis exercitation quis consectetur incididunt ex magna
@@ -45,8 +59,11 @@ export default function PresentationSection() {
               veniam sunt. Incididunt veniam adipisicing nostrud magna proident. Enim esse voluptate
               laborum consectetur. Qui minim aliquip sunt in tempor sunt.
             </div>
-          </div>
-          <div className="col-start-9 col-end-16 row-start-8 row-end-11 size-full flex items-center justify-center">
+          </SequenceItem>
+          <SequenceItem
+            index={4}
+            className="col-start-9 col-end-16 row-start-8 row-end-11 size-full flex items-center justify-center"
+          >
             <div className=" size-full rounded-lg">
               Exercitation fugiat tempor ad nostrud commodo deserunt excepteur. Qui dolor duis
               eiusmod magna ullamco cillum amet ad occaecat irure duis ad cupidatat. Dolor quis sunt
@@ -57,7 +74,7 @@ export default function PresentationSection() {
               consequat consequat.Id voluptate Lorem ex sunt aliqua culpa ipsum est irure deserunt
               amet Lorem. Esse id deserunt aliquip laborum. In laborum ipsum ea cillum.
             </div>
-          </div>
+          </SequenceItem>
         </div>
       </SectionContent>
       <Title>Me</Title>

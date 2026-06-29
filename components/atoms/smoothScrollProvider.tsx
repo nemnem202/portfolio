@@ -6,9 +6,12 @@ import { useTabs } from "@/providers/TabsProvider";
 function SnapSetup() {
   const lenis = useLenis();
   const { currentTab } = useTabs();
+  const snapRef = useRef<Snap | null>(null);
+  const hasInitialized = useRef(false);
 
   useEffect(() => {
     if (!lenis) return;
+
     const snap = new Snap(lenis, {
       type: "mandatory",
       duration: 1.0,
@@ -16,19 +19,21 @@ function SnapSetup() {
       debounce: 0,
     });
     snap.addElements(document.querySelectorAll("section") as any, { align: ["start"] });
-    return () => snap.destroy();
+    snapRef.current = snap;
+    return () => {
+      snap.destroy();
+      snapRef.current = null;
+    };
   }, [lenis]);
 
   useEffect(() => {
     const element = document.getElementById(currentTab);
     if (!element) return;
-
     lenis?.scrollTo(element);
   }, [currentTab]);
 
   return null;
 }
-
 export default function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   return (
     <ReactLenis
