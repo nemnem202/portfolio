@@ -1,8 +1,9 @@
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, PanInfo, useMotionValue, useTransform } from "motion/react";
 import React, { JSX, ReactNode, useEffect, useMemo, useRef, useState } from "react";
-
 // replace icons with your own if needed
 import { FiCircle, FiCode, FiFileText, FiLayers, FiLayout } from "react-icons/fi";
+import { Button } from "./button";
 import SpotlightCard from "./SpotlightCard";
 export interface CarouselItem {
   content: ReactNode;
@@ -250,8 +251,17 @@ export default function Carousel({
         ))}
       </motion.div>
       <div
-        className={`flex w-full justify-center ${round ? "absolute z-20 bottom-12 left-1/2 -translate-x-1/2" : ""}`}
+        className={`flex w-full justify-center mt-2 ${round ? "absolute z-20 bottom-12 left-1/2 -translate-x-1/2" : ""}`}
       >
+        <Button
+          size={"icon"}
+          variant={"outline"}
+          disabled={position <= 0}
+          className="rounded-full"
+          onClick={() => setPosition((prev) => prev - 1)}
+        >
+          <ArrowLeft />
+        </Button>
         <div className="mt-4 flex w-[150px] justify-between px-8">
           {items.map((_, index) => (
             <motion.button
@@ -276,6 +286,15 @@ export default function Carousel({
             />
           ))}
         </div>
+        <Button
+          size={"icon"}
+          variant={"outline"}
+          className="rounded-full"
+          disabled={position >= itemsForRender.length - 1}
+          onClick={() => setPosition((prev) => prev + 1)}
+        >
+          <ArrowRight />
+        </Button>
       </div>
     </div>
   );
