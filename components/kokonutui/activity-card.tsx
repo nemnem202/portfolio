@@ -196,7 +196,7 @@ export default function AppleActivityCard({
           {title}
         </motion.h2>
 
-        <div className="flex items-center">
+        <div className="flex md:flex-row flex-col items-center">
           <div className="relative h-[180px] w-[180px]">
             {activities.map((activity, index) => (
               <CircleProgress data={activity} index={index} key={activity.label} />

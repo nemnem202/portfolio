@@ -44,7 +44,7 @@ export default function Section({ children, id }: { children: ReactNode; id: Sec
   return (
     <section
       ref={ref}
-      className="w-full h-screen shrink-0 flex-col flex justify-end p-4 pt-15"
+      className="w-full h-screen shrink-0 flex-col flex justify-end p-4 md:pt-15 pt-20 overflow-hidden"
       id={id}
     >
       {children}
@@ -62,10 +62,10 @@ export function SectionContent({
   animateOnScroll?: boolean;
 }) {
   return (
-    <ParallaxBox className="h-full w-full p-15 lg:pl-25 min-h-0">
+    <ParallaxBox className="h-full w-full md:p-15 lg:pl-25 min-h-0">
       <SequenceProvider
         triggerOnVisibility={animateOnScroll}
-        className={`h-full w-full p-15 lg:pl-25 min-h-0 ${className}`}
+        className={`h-full w-full md:p-15 lg:pl-25 min-h-0 ${className}`}
         animationDuration={500}
         staggerPercentage={0.3}
       >

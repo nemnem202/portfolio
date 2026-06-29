@@ -4,6 +4,7 @@
 body {
   margin: 0;
   font-family:monospace sans-serif;
+    overflow: hidden;
 
 }
 * {
@@ -13,13 +14,15 @@ body {
   position: relative;
 }
  
-html {
+* {
   scrollbar-width: none;
-  overflow: hidden;
+
 }
 
+
+
 /* Pour Chrome/Safari/Edge */
-html::-webkit-scrollbar {
+*::-webkit-scrollbar {
   display: none;
 }
 

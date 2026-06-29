@@ -43,7 +43,7 @@ const RotatingBorder = () => {
 
   return (
     <svg
-      className="pointer-events-none absolute inset-0 h-full w-full overflow-visible opacity-20"
+      className="pointer-events-none absolute inset-0 h-full w-full overflow-visible opacity-20 md:block hidden"
       preserveAspectRatio="none"
       viewBox="0 0 400 48"
     >
@@ -173,7 +173,7 @@ export default function SmoothTab({
       aria-label="Navigation des sections"
       className={cn(
         "relative mt-auto flex items-center justify-between gap-1 py-1",
-        "w-[400px]",
+        "w-[400px] h-full",
         "rounded-xl cursor-pointer",
         "transition-all duration-200",
         className
@@ -212,7 +212,7 @@ export default function SmoothTab({
                 "relative flex items-center justify-center gap-0.5 rounded-lg px-2 py-1.5",
                 "font-medium text-sm transition-all duration-300 cursor-pointer",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                "truncate ",
+                "truncate",
                 isSelected ? "text-white" : "text-muted-foreground hover:text-foreground"
               )}
               id={`nav-${item.id}`}

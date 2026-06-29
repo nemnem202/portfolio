@@ -8,7 +8,7 @@ export default function SkillSection() {
   return (
     <Section id="skills">
       <SectionContent className="flex gap-12">
-        <div className="grid size-full grid-cols-4 grid-rows-6">
+        <div className="hidden md:grid size-full grid-cols-4 grid-rows-6">
           <LazyMountSequenceItem
             index={1}
             className="col-start-1 row-start-1 row-end-3 flex justify-center items-center"

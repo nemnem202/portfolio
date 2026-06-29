@@ -7,7 +7,7 @@ export default function PresentationSection() {
   return (
     <Section id="presentation">
       <SectionContent className="flex gap-12" animateOnScroll={false}>
-        <div className="grid grid-cols-15 grid-rows-10 size-full">
+        <div className="md:grid md:grid-cols-15 md:grid-rows-10 size-full">
           <SequenceItem
             index={0}
             className="col-start-6 col-end-9 row-start-4 row-end-8 size-full flex items-center justify-center"

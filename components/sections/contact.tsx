@@ -9,8 +9,8 @@ import { SequenceItem } from "../layout/sequenceItem";
 export default function ContacSection() {
   return (
     <Section id="contacts">
-      <SectionContent className="flex gap-12">
-        <SequenceItem className="flex-1 flex items-center justify-center" index={0}>
+      <SectionContent className="flex flex-col md:flex-row gap-12">
+        <SequenceItem className="flex-1 flex  items-center justify-center" index={0}>
           <div className="flex flex-col items-end">
             <p className="max-w-2xl">
               Velit cupidatat commodo adipisicing est consequat mollit veniam mollit deserunt ad
