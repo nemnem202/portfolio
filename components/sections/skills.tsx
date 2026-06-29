@@ -1,5 +1,6 @@
 import Title from "../atoms/title";
 import AppleActivityCard from "../kokonutui/activity-card";
+import ParallaxBox from "../layout/parallaxBox";
 import Section, { SectionContent } from "../layout/section";
 
 export default function SkillSection() {
@@ -7,15 +8,15 @@ export default function SkillSection() {
     <Section id="skills">
       <SectionContent className="flex gap-12">
         <div className="grid size-full grid-cols-4 grid-rows-6">
-          <div className="col-start-1 row-start-1 row-end-3 flex justify-center items-center">
+          <ParallaxBox className="col-start-1 row-start-1 row-end-3 flex justify-center items-center">
             <AppleActivityCard title="Programming" />
-          </div>
-          <div className="col-start-2 row-start-5 row-end-7 flex justify-center items-center">
+          </ParallaxBox>
+          <ParallaxBox className="col-start-2 row-start-5 row-end-7 flex justify-center items-center">
             <AppleActivityCard title="Ci/CD" />
-          </div>
-          <div className="col-start-4 row-start-3 row-end-4 flex justify-center items-center">
+          </ParallaxBox>
+          <ParallaxBox className="col-start-4 row-start-3 row-end-4 flex justify-center items-center">
             <AppleActivityCard title="Mock-up creation" />
-          </div>
+          </ParallaxBox>
 
           <div className="col-start-2 col-end-4 row-start-2 row-end-4 flex justify-center items-center">
             <p className="max-w-2xl">

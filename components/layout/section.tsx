@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useRef } from "react";
 import { Section } from "@/config/sections";
 import { useTabs } from "@/providers/TabsProvider";
+import ParallaxBox from "./parallaxBox";
 
 export default function Section({ children, id }: { children: ReactNode; id: Section }) {
   const { setDisplayedTab } = useTabs();
@@ -58,14 +59,8 @@ export function SectionContent({
   className?: string;
 }) {
   return (
-    <div
-      className={`h-full w-full p-15 lg:pl-25 min-h-0 ${className}`}
-      style={{
-        transform: "translateY(calc((var(--scroll-progress, 0.5) - 0.5) * -280px))",
-        willChange: "transform",
-      }}
-    >
+    <ParallaxBox className={`h-full w-full p-15 lg:pl-25 min-h-0 ${className}`}>
       {children}
-    </div>
+    </ParallaxBox>
   );
 }

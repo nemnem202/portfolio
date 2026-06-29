@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatedSpan, Terminal, TypingAnimation } from "@/components/ui/terminal";
 import Title from "../atoms/title";
 import SocialButton from "../kokonutui/social-buttons";
+import ParallaxBox from "../layout/parallaxBox";
 import Section, { SectionContent } from "../layout/section";
 export default function ContacSection() {
   return (
@@ -19,9 +20,9 @@ export default function ContacSection() {
             </div>
           </div>
         </div>
-        <div className="w-full max-w-2xl">
+        <ParallaxBox className="w-full max-w-2xl">
           <Form />
-        </div>
+        </ParallaxBox>
       </SectionContent>
       <Title>Contact</Title>
     </Section>
@@ -93,7 +94,6 @@ export function Form() {
   };
 
   return (
-    // sequence={false} évite que Magic UI bloque l'affichage de nos composants dynamiques
     <Terminal sequence={false} className="font-mono text-left shadow-2xl shadow-primary/20">
       {/* --- En-tête de bienvenue --- */}
       <AnimatedSpan className="text-muted-foreground mb-2">

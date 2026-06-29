@@ -1,4 +1,5 @@
 import Title from "../atoms/title";
+import ParallaxBox from "../layout/parallaxBox";
 import Section, { SectionContent } from "../layout/section";
 import Carousel from "../ui/Carousel";
 
@@ -6,7 +7,7 @@ export default function ProjectsSection() {
   return (
     <Section id="projects">
       <SectionContent className="flex gap-12">
-        <div className="flex-1 ">
+        <ParallaxBox className="flex-1 ">
           <Carousel
             baseWidth={700}
             autoplay={false}
@@ -19,7 +20,7 @@ export default function ProjectsSection() {
               content: <ProfileCard />,
             }))}
           />
-        </div>
+        </ParallaxBox>
         <div className="size-full flex items-center justify-center">
           <p className="max-w-2xl">
             Reprehenderit labore exercitation sint ex labore ut eiusmod eu esse. Anim duis
