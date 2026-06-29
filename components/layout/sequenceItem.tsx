@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+// components/SequenceItem.tsx
+import React, { useEffect, useState } from "react";
 import { useSequence } from "@/providers/StaggerProvider";
 
 export const SequenceItem: React.FC<{
@@ -6,38 +7,51 @@ export const SequenceItem: React.FC<{
   children: React.ReactNode;
   className?: string;
 }> = ({ index, children, className = "" }) => {
-  const { animationDuration, staggerPercentage, isVisible: providerVisible } = useSequence();
-  const [isMounted, setIsMounted] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    // Si le provider dit que la section est visible
-    if (providerVisible) {
-      // 1. On monte le composant immédiatement
-      setIsMounted(true);
-
-      // 2. On attend un cycle de rendu (10ms) pour que React injecte le DOM
-      // puis on lance l'animation
-      const timer = setTimeout(() => {
-        setIsAnimating(true);
-      }, 10);
-      return () => clearTimeout(timer);
-    }
-  }, [providerVisible]);
-
-  if (!isMounted) return null;
+  const { animationDuration, staggerPercentage, isVisible } = useSequence();
 
   const delay = index * (animationDuration * staggerPercentage);
 
   return (
     <div
-      className={`${className} transition-opacity duration-300 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+      className={`${className} transition-all  ${isVisible ? "opacity-100" : "opacity-0"}`}
       style={{
         transitionDuration: `${animationDuration}ms`,
-        transitionDelay: `${isAnimating ? delay : 0}ms`,
+        // filter: isVisible ? "blur(0px)" : "blur(10px)",
+        // transform: isVisible ? "translateX(0)" : "translateX(-20px)",
+        transitionDelay: `${delay}ms`,
       }}
     >
       {children}
     </div>
   );
+};
+
+export const LazyMountSequenceItem: React.FC<{
+  index: number;
+  children: React.ReactNode;
+  className?: string;
+}> = ({ index, children, className = "" }) => {
+  const { animationDuration, staggerPercentage, isVisible } = useSequence();
+  const [startAnimation, setStartAnimation] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  const delay = index * (animationDuration * staggerPercentage);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    const mountTimer = setTimeout(() => {
+      setIsMounted(true);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setStartAnimation(true));
+      });
+    }, delay);
+
+    return () => clearTimeout(mountTimer);
+  }, [isVisible, delay]);
+
+  if (!isVisible) {
+    return <div className={className} />;
+  }
+
+  return <div className={className}>{isMounted ? children : null}</div>;
 };

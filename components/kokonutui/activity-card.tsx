@@ -11,6 +11,7 @@
  */
 
 import { motion } from "motion/react";
+import { useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface ActivityData {
@@ -174,6 +175,9 @@ export default function AppleActivityCard({
   title?: string;
   className?: string;
 }) {
+  useEffect(() => {
+    console.log("Init", title);
+  }, []);
   return (
     <div
       className={cn(

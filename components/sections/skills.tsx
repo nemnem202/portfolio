@@ -2,38 +2,38 @@ import Title from "../atoms/title";
 import AppleActivityCard from "../kokonutui/activity-card";
 import ParallaxBox from "../layout/parallaxBox";
 import Section, { SectionContent } from "../layout/section";
-import { SequenceItem } from "../layout/sequenceItem";
+import { LazyMountSequenceItem, SequenceItem } from "../layout/sequenceItem";
 
 export default function SkillSection() {
   return (
     <Section id="skills">
       <SectionContent className="flex gap-12">
         <div className="grid size-full grid-cols-4 grid-rows-6">
-          <SequenceItem
+          <LazyMountSequenceItem
             index={1}
             className="col-start-1 row-start-1 row-end-3 flex justify-center items-center"
           >
             <ParallaxBox>
               <AppleActivityCard title="Programming" />
             </ParallaxBox>
-          </SequenceItem>
-          <SequenceItem
+          </LazyMountSequenceItem>
+          <LazyMountSequenceItem
             index={2}
             className="col-start-2 row-start-5 row-end-7 flex justify-center items-center"
           >
             <ParallaxBox>
               <AppleActivityCard title="Ci/CD" />
             </ParallaxBox>
-          </SequenceItem>
+          </LazyMountSequenceItem>
 
-          <SequenceItem
+          <LazyMountSequenceItem
             index={3}
             className="col-start-4 row-start-3 row-end-4 flex justify-center items-center"
           >
             <ParallaxBox>
               <AppleActivityCard title="Mock-up creation" />
             </ParallaxBox>
-          </SequenceItem>
+          </LazyMountSequenceItem>
 
           <SequenceItem
             index={0}

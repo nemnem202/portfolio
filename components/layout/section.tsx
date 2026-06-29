@@ -66,7 +66,8 @@ export function SectionContent({
       <SequenceProvider
         triggerOnVisibility={animateOnScroll}
         className={`h-full w-full p-15 lg:pl-25 min-h-0 ${className}`}
-        animationDuration={1000}
+        animationDuration={500}
+        staggerPercentage={0.3}
       >
         {children}
       </SequenceProvider>
