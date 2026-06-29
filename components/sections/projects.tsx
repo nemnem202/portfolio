@@ -6,7 +6,7 @@ export default function ProjectsSection() {
   return (
     <Section id="projects">
       <SectionContent className="flex gap-12">
-        <div className="flex-1">
+        <div className="flex-1 ">
           <Carousel
             baseWidth={700}
             autoplay={false}

@@ -55,7 +55,7 @@ function CarouselItem({
   return (
     <motion.div
       key={`${item?.id ?? index}-${index}`}
-      className={`relative shrink-0 h-full flex flex-col ${
+      className={`relative shrink-0 h-full flex flex-col shadow-2xl shadow-primary/20 ${
         round
           ? "items-center justify-center text-center bg-[#120F17] border-0"
           : "items-start justify-between bg-[#222] border border-[#222] rounded-[12px]"
@@ -257,7 +257,7 @@ export default function Carousel({
           size={"icon"}
           variant={"outline"}
           disabled={position <= 0}
-          className="rounded-full"
+          className="rounded-full hover:bg-primary/50 border-none"
           onClick={() => setPosition((prev) => prev - 1)}
         >
           <ArrowLeft />
@@ -289,7 +289,7 @@ export default function Carousel({
         <Button
           size={"icon"}
           variant={"outline"}
-          className="rounded-full"
+          className="rounded-full hover:bg-primary/50 border-none"
           disabled={position >= itemsForRender.length - 1}
           onClick={() => setPosition((prev) => prev + 1)}
         >

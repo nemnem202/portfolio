@@ -94,7 +94,7 @@ export function Form() {
 
   return (
     // sequence={false} évite que Magic UI bloque l'affichage de nos composants dynamiques
-    <Terminal sequence={false} className="font-mono text-left shadow-2xl">
+    <Terminal sequence={false} className="font-mono text-left shadow-2xl shadow-primary/20">
       {/* --- En-tête de bienvenue --- */}
       <AnimatedSpan className="text-muted-foreground mb-2">
         # Initialisation du formulaire de contact CLI...
