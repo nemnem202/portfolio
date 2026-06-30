@@ -6,11 +6,12 @@ import ContacSection from "@/components/sections/contact";
 import PresentationSection from "@/components/sections/presentation";
 import LastProjectsSection from "@/components/sections/projects";
 import SkillSection from "@/components/sections/skills";
+import ScreenSizeProvider from "@/providers/screen-size-provider";
 import TabsProvider from "@/providers/TabsProvider";
 
 export default function Page() {
   return (
-    <>
+    <ScreenSizeProvider>
       <TabsProvider defaultTab="presentation">
         <Header />
         <main className="flex flex-col gap-10">
@@ -23,6 +24,6 @@ export default function Page() {
           </SmoothScrollProvider>
         </main>
       </TabsProvider>
-    </>
+    </ScreenSizeProvider>
   );
 }
